@@ -219,6 +219,24 @@ class _PelangganPageState extends State<PelangganPage> {
                   child: const Text('Simpan', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),),
                 ),
               ),
+              const SizedBox(height: 16),
+              SizedBox(
+                width: double.infinity,
+                child: OutlinedButton(
+                  style: OutlinedButton.styleFrom(
+                    side: const BorderSide(color: const Color(0xFFFE5A28)),
+                    padding: const EdgeInsets.symmetric(vertical: 16),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                  ),
+                  onPressed: _resetForm,
+                  child: const Text(
+                    'Reset',
+                    style: TextStyle(color: const Color(0xFFFE5A28), fontSize: 16),
+                  ),
+                ),
+              ),
             ],
           )
         ),
