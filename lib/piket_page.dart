@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:intl/date_symbol_data_local.dart';
+import 'package:ucp1/detail_piket_page.dart';
 class PiketPage extends StatefulWidget {
   const PiketPage({super.key});
 
@@ -225,7 +226,18 @@ class _PiketPageState extends State<PiketPage> {
                                   color: Colors.white,
                                 ),
                                 onTap: () {
-                                  
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder:
+                                          (context) => DetailPiketPage(
+                                            nama: _daftarTugas[index]['nama'],
+                                            tanggal:
+                                                _daftarTugas[index]['tanggal'],
+                                            tugas: _daftarTugas[index]['tugas'],
+                                          ),
+                                    ),
+                                  );
                                 },
                               ),
                             );
