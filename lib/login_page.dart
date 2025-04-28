@@ -67,6 +67,46 @@ class _LoginPageState extends State<LoginPage> {
                     return null;
                   },
                 ),
+                const SizedBox(height: 28),
+
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    "Password",
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                ),
+                const SizedBox(height: 8),
+                TextFormField(
+                  controller: passwordController,
+                  obscureText: _obscureText,
+                  decoration: InputDecoration(
+                    hintText: 'Password',
+                    prefixIcon: const Icon(Icons.lock),
+                    suffixIcon: IconButton(
+                      icon: Icon(
+                        _obscureText ? Icons.visibility_off : Icons.visibility,
+                      ),
+                      onPressed: () {
+                        setState(() {
+                          _obscureText = !_obscureText;
+                        });
+                      },
+                    ),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                  ),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Password tidak boleh kosong';
+                    }
+                    return null;
+                  },
+                ),
+
+                const SizedBox(height: 40),
+
             ],
           ),)
           )
