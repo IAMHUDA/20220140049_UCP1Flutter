@@ -43,6 +43,43 @@ class _PelangganPageState extends State<PelangganPage> {
         ),
         centerTitle: true,
       ),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(16),
+        child: Form(
+          key: _formKey,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              _buildLabel("Nama Cust"),
+              TextFormField(
+                controller: _namaController,
+                decoration: InputDecoration(
+                  hintText: "Nama Cust",
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                ),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return "Cust tidak boleh kosong";
+                  }
+                  return null;
+                },
+              ),
+              const SizedBox(height: 16),
+            ],
+          )
+        ),
+      ),
+    );
+  }
+  Widget _buildLabel(String text) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 8),
+      child: Text(
+        text,
+        style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+      ),
     );
   }
 }
