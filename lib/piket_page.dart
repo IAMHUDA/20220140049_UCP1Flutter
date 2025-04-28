@@ -143,6 +143,50 @@ class _PiketPageState extends State<PiketPage> {
                   ),
                 ),
               ),
+              const SizedBox(height: 16),
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  "Tugas Piket",
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+              ),
+              const SizedBox(height: 16),
+              // Tugas Piket + Tombol Tambah
+              Row(
+                children: [
+                  Expanded(
+                    flex: 1,
+                    child: TextFormField(
+                      controller: _tugasController,
+                      decoration:  InputDecoration(
+                        labelText: 'Tugas Piket',
+                        border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                      ),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Tugas tidak boleh kosong';
+                        }
+                        return null;
+                      },
+                    ),
+                  ),
+                  const SizedBox(width: 8),
+                  Expanded(
+                    flex: 1,
+                    child: ElevatedButton(
+                      onPressed: _tambahTugas,
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: const Color(0xFFFE5A28),
+                        padding: const EdgeInsets.symmetric(vertical: 20),
+                      ),
+                      child: const Text('Tambah',style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),),
+                    ),
+                  ),
+                ],
+              ),
           ],
         )
       ),),
