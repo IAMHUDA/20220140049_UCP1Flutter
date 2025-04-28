@@ -23,7 +23,7 @@ class _PiketPageState extends State<PiketPage> {
   final Map<String, String> _indonesianDays = {
     'Monday': 'Senin',
     'Tuesday': 'Selasa',
-    'Wednesday': 'Rabu',
+    'Wednesday': 'Rabu', 
     'Thursday': 'Kamis',
     'Friday': 'Jumat',
     'Saturday': 'Sabtu',
