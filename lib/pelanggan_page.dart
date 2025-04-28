@@ -137,6 +137,57 @@ class _PelangganPageState extends State<PelangganPage> {
               ),
               const SizedBox(height: 16),
 
+              Row(
+                children: [
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        _buildLabel("Provinsi"),
+                        TextFormField(
+                          controller: _provinsiController,
+                          decoration: InputDecoration(
+                            hintText: "Provinsi",
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                          ),
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return "Provinsi tidak boleh kosong";
+                            }
+                            return null;
+                          },
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(width: 8),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        _buildLabel("Kode Pos"),
+                        TextFormField(
+                          controller: _kodePosController,
+                          decoration: InputDecoration(
+                            hintText: "Kode Pos",
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                          ),
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return "Kode Pos tidak boleh kosong";
+                            }
+                            return null;
+                          },
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             ],
           )
         ),
