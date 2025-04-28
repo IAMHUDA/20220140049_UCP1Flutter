@@ -94,6 +94,55 @@ class _PiketPageState extends State<PiketPage> {
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
               ),
+              const SizedBox(height: 16),
+              // Nama Anggota
+              TextFormField(
+                controller: _namaController,
+                decoration:  InputDecoration(
+                  hintText: 'Nama Anggota',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                ),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Nama tidak boleh kosong';
+                  }
+                  return null;
+                },
+              ),
+              const SizedBox(height: 16),
+
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  "Pilih Tanggal",
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+              ),
+              const SizedBox(height: 16),
+              // Pilih Tanggal
+              GestureDetector(
+                onTap: _pickDate,
+                child: AbsorbPointer(
+                  child: TextFormField(
+                    controller: _tanggalController,
+                    decoration:  InputDecoration(
+                      hintText: 'Pilih Tanggal',
+                      prefixIcon: Icon(Icons.calendar_today),
+                      border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                    ),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Tanggal tidak boleh kosong';
+                      }
+                      return null;
+                    },
+                  ),
+                ),
+              ),
           ],
         )
       ),),
