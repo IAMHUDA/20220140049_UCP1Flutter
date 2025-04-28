@@ -72,7 +72,9 @@ class _HomePageState extends State<HomePage> {
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => PiketPage()),
+                      MaterialPageRoute(
+                        builder: (context) => PiketPage(nama: widget.nama),
+                      ),
                     );
                   },
                 ),

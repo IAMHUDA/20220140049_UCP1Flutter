@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:intl/date_symbol_data_local.dart';
 import 'package:ucp1/detail_piket_page.dart';
+
 class PiketPage extends StatefulWidget {
-  const PiketPage({super.key});
+  final String nama;
+  
+  const PiketPage({super.key, required this.nama});
 
   @override
   State<PiketPage> createState() => _PiketPageState();
@@ -12,18 +14,53 @@ class PiketPage extends StatefulWidget {
 class _PiketPageState extends State<PiketPage> {
   final _formKey = GlobalKey<FormState>();
 
-  final TextEditingController _namaController = TextEditingController();
+  late final TextEditingController _namaController;
   final TextEditingController _tugasController = TextEditingController();
   final TextEditingController _tanggalController = TextEditingController();
 
   List<Map<String, dynamic>> _daftarTugas = [];
 
-  @override
+  final Map<String, String> _indonesianDays = {
+    'Monday': 'Senin',
+    'Tuesday': 'Selasa',
+    'Wednesday': 'Rabu',
+    'Thursday': 'Kamis',
+    'Friday': 'Jumat',
+    'Saturday': 'Sabtu',
+    'Sunday': 'Minggu',
+  };
+
+  final Map<String, String> _indonesianMonths = {
+    'January': 'Januari',
+    'February': 'Februari',
+    'March': 'Maret',
+    'April': 'April',
+    'May': 'Mei',
+    'June': 'Juni',
+    'July': 'Juli',
+    'August': 'Agustus',
+    'September': 'September',
+    'October': 'Oktober',
+    'November': 'November',
+    'December': 'Desember',
+  };
+
+@override
   void initState() {
     super.initState();
-    initializeDateFormatting('id_ID', null);
+    _namaController = TextEditingController(text: widget.nama);
   }
-@override
+  String _formatIndonesianDate(DateTime date) {
+    final englishDay = DateFormat('EEEE').format(date);
+    final englishMonth = DateFormat('MMMM').format(date);
+    
+    final indonesianDay = _indonesianDays[englishDay] ?? englishDay;
+    final indonesianMonth = _indonesianMonths[englishMonth] ?? englishMonth;
+    
+    return '$indonesianDay, ${date.day} $indonesianMonth ${date.year}';
+  }
+
+  @override
   void dispose() {
     _namaController.dispose();
     _tugasController.dispose();
@@ -37,14 +74,10 @@ class _PiketPageState extends State<PiketPage> {
       initialDate: DateTime.now(),
       firstDate: DateTime(2000),
       lastDate: DateTime(2100),
-      locale: const Locale('id', 'ID'),
     );
     if (picked != null) {
       setState(() {
-        _tanggalController.text = DateFormat(
-          'EEEE, dd MMMM yyyy',
-          'id_ID',
-        ).format(picked);
+        _tanggalController.text = _formatIndonesianDate(picked);
       });
     }
   }
@@ -57,12 +90,12 @@ class _PiketPageState extends State<PiketPage> {
           'tanggal': _tanggalController.text,
           'tugas': _tugasController.text,
         });
-        _namaController.clear();
         _tanggalController.clear();
         _tugasController.clear();
       });
     }
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -81,14 +114,14 @@ class _PiketPageState extends State<PiketPage> {
           },
         ),
       ),
-      body: Padding(padding: 
-      const EdgeInsets.all(16.0),
-      child: Form(
-        key: _formKey,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Align(
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Form(
+          key: _formKey,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
                   "Nama Anggota",
@@ -96,10 +129,9 @@ class _PiketPageState extends State<PiketPage> {
                 ),
               ),
               const SizedBox(height: 16),
-              // Nama Anggota
               TextFormField(
                 controller: _namaController,
-                decoration:  InputDecoration(
+                decoration: InputDecoration(
                   hintText: 'Nama Anggota',
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
@@ -122,18 +154,17 @@ class _PiketPageState extends State<PiketPage> {
                 ),
               ),
               const SizedBox(height: 16),
-              // Pilih Tanggal
               GestureDetector(
                 onTap: _pickDate,
                 child: AbsorbPointer(
                   child: TextFormField(
                     controller: _tanggalController,
-                    decoration:  InputDecoration(
+                    decoration: InputDecoration(
                       hintText: 'Pilih Tanggal',
                       prefixIcon: Icon(Icons.calendar_today),
                       border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(12),
-                            ),
+                        borderRadius: BorderRadius.circular(12),
+                      ),
                     ),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
@@ -153,18 +184,17 @@ class _PiketPageState extends State<PiketPage> {
                 ),
               ),
               const SizedBox(height: 16),
-              // Tugas Piket + Tombol Tambah
               Row(
                 children: [
                   Expanded(
                     flex: 1,
                     child: TextFormField(
                       controller: _tugasController,
-                      decoration:  InputDecoration(
+                      decoration: InputDecoration(
                         labelText: 'Tugas Piket',
                         border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(12),
-                            ),
+                          borderRadius: BorderRadius.circular(12),
+                        ),
                       ),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
@@ -183,7 +213,10 @@ class _PiketPageState extends State<PiketPage> {
                         backgroundColor: const Color(0xFFFE5A28),
                         padding: const EdgeInsets.symmetric(vertical: 20),
                       ),
-                      child: const Text('Tambah',style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),),
+                      child: const Text('Tambah',
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold)),
                     ),
                   ),
                 ],
@@ -200,53 +233,51 @@ class _PiketPageState extends State<PiketPage> {
               const SizedBox(height: 8),
 
               Expanded(
-                child:
-                    _daftarTugas.isEmpty
-                        ? const Center(
-                          child: Text(
-                            'Belum ada data',
-                            style: TextStyle(fontSize: 16, color: Colors.grey),
-                          ),
-                        )
-                        : ListView.builder(
-                          itemCount: _daftarTugas.length,
-                          itemBuilder: (context, index) {
-                            return Card(
-                              color: const Color(0xFFFE5A28),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(8),
-                              ),
-                              child: ListTile(
-                                title: Text(
-                                  _daftarTugas[index]['tugas'],
-                                  style: const TextStyle(color: Colors.white),
-                                ),
-                                trailing: const Icon(
-                                  Icons.arrow_forward_ios,
-                                  color: Colors.white,
-                                ),
-                                onTap: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder:
-                                          (context) => DetailPiketPage(
-                                            nama: _daftarTugas[index]['nama'],
-                                            tanggal:
-                                                _daftarTugas[index]['tanggal'],
-                                            tugas: _daftarTugas[index]['tugas'],
-                                          ),
-                                    ),
-                                  );
-                                },
-                              ),
-                            );
-                          },
+                child: _daftarTugas.isEmpty
+                    ? const Center(
+                        child: Text(
+                          'Belum ada data',
+                          style: TextStyle(fontSize: 16, color: Colors.grey),
                         ),
+                      )
+                    : ListView.builder(
+                        itemCount: _daftarTugas.length,
+                        itemBuilder: (context, index) {
+                          return Card(
+                            color: const Color(0xFFFE5A28),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            child: ListTile(
+                              title: Text(
+                                _daftarTugas[index]['tugas'],
+                                style: const TextStyle(color: Colors.white),
+                              ),
+                              trailing: const Icon(
+                                Icons.arrow_forward_ios,
+                                color: Colors.white,
+                              ),
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => DetailPiketPage(
+                                      nama: _daftarTugas[index]['nama'],
+                                      tanggal: _daftarTugas[index]['tanggal'],
+                                      tugas: _daftarTugas[index]['tugas'],
+                                    ),
+                                  ),
+                                );
+                              },
+                            ),
+                          );
+                        },
+                      ),
               ),
-          ],
-        )
-      ),),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
