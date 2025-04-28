@@ -71,6 +71,28 @@ class DetailPelangganPage extends StatelessWidget {
                 Expanded(child: _buildDetailSection("Kode Pos", kodePos)),
               ],
             ),
+            const SizedBox(height: 32),
+            SizedBox(
+              width: double.infinity,
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color(0xFFFE5A28),
+                  padding: const EdgeInsets.symmetric(vertical: 16),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                ),
+                onPressed: () {
+                  Navigator.pushNamedAndRemoveUntil(
+                    context,
+                    '/home',
+                    (route) => false,
+                  );
+                },
+
+                child: const Text('Selesai', style: TextStyle(fontSize: 16)),
+              ),
+            ),
           ],
         ),
       ),
