@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:ucp1/login_page.dart';
 
 
 void main() {
@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: '/login',
       routes: {
-
+        '/login': (context) => const LoginPage(),
       },
       debugShowCheckedModeBanner: false,
     );
