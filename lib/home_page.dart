@@ -53,7 +53,87 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
             ),
+            SizedBox(height: 16),
+            GridView(
+              shrinkWrap: true,
+              physics: NeverScrollableScrollPhysics(),
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                crossAxisSpacing: 12,
+                mainAxisSpacing: 12,
+                childAspectRatio: 1, // 1:1 untuk normal card
+              ),
+              children: [
+                menuCard(
+                  icon: Icons.cloud_sync_sharp,
+                  title: 'Data Piket',
+                  backgroundColor: Color(0xFFFE5A28),
+                  onTap: () {
+                    
+                  },
+                ),
+                menuCard(
+                  icon: Icons.dashboard_customize_sharp,
+                  title: 'Data Pelanggan',
+                  backgroundColor: Color(0xFFFE5A28),
+                  onTap: () {
+                    
+                  },
+                  
+                ),
+              ],
+            ),
+            SizedBox(height: 12),
+            menuCard(
+              icon: Icons.list_alt_outlined,
+              title: 'Barang Masuk/Keluar',
+              backgroundColor: Color(0xFFFE5A28),
+              height: 200,
+              fullWidth: true,
+              onTap: () {
+                
+              },
+            ),
           ],
+        ),
+      ),
+    );
+  }
+
+  Widget menuCard({
+    required IconData icon,
+    required String title,
+    Color backgroundColor = const Color(0xFFFE5A28),
+    double height = 100,
+    bool fullWidth = false,
+    VoidCallback? onTap,
+  }) {
+    return InkWell(
+      onTap: onTap,
+      child: Container(
+        width: fullWidth ? double.infinity : null,
+        height: height,
+        padding: EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          color: backgroundColor,
+          borderRadius: BorderRadius.circular(12),
+        ),
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(icon, size: 36, color: Colors.white),
+              SizedBox(width: 12),
+              Text(
+                title,
+                style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 16,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
