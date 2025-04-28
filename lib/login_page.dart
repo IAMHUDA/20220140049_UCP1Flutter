@@ -32,6 +32,41 @@ class _LoginPageState extends State<LoginPage> {
                     height: 100,
                   ),
                 ),
+                const SizedBox(height: 16),
+                const Text(
+                  "SELAMAT DATANG KEMBALI",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18,
+                    letterSpacing: 1.2,
+                  ),
+                ),
+                const SizedBox(height: 32),
+
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    "Email",
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                ),
+                const SizedBox(height: 8),
+                TextFormField(
+                  controller: emailController,
+                  decoration: InputDecoration(
+                    hintText: ' Email',
+                    prefixIcon: const Icon(Icons.email),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                  ),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Email tidak boleh kosong';
+                    }
+                    return null;
+                  },
+                ),
             ],
           ),)
           )
