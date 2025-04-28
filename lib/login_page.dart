@@ -106,6 +106,38 @@ class _LoginPageState extends State<LoginPage> {
                 ),
 
                 const SizedBox(height: 40),
+                // Button
+                SizedBox(
+                  width: double.infinity,
+                  height: 55,
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color(0xFFFE5A28),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(16),
+                      ),
+                    ),
+                    onPressed: () {
+                      if (_formKey.currentState!.validate()) {
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder:
+                                (context) => HomePage(
+                                  nama: emailController.text,
+                                ), // Kirim email ke HomePage
+                          ),
+                        );
+                      }
+                    },
+                    child: const Text(
+                      'Masuk',
+                      style: TextStyle(color: Colors.white, fontSize: 16),
+                    ),
+                  ),
+                ),
+
+                const SizedBox(height: 24),
 
             ],
           ),)
