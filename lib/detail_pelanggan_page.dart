@@ -44,12 +44,55 @@ class DetailPelangganPage extends StatelessWidget {
             const CircleAvatar(
               radius: 50,
               backgroundImage: AssetImage(
-                'assets/images/profile_placeholder.png',
+                'assets/images/profile.jpg',
               ),
+            ),
+            const SizedBox(height: 16),
+            Text(
+              nama,
+              style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 4),
+            Text(
+              email,
+              style: const TextStyle(fontSize: 16, color: Colors.black54),
+            ),
+            Text(
+              noHp,
+              style: const TextStyle(fontSize: 16, color: Colors.black54),
+            ),
+            const SizedBox(height: 32),
+            _buildDetailSection("Alamat", alamat),
+            const SizedBox(height: 16),
+            Row(
+              children: [
+                Expanded(child: _buildDetailSection("Provinsi", provinsi)),
+                const SizedBox(width: 8),
+                Expanded(child: _buildDetailSection("Kode Pos", kodePos)),
+              ],
             ),
           ],
         ),
       ),
+    );
+  }
+  Widget _buildDetailSection(String label, String value) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          label,
+          style: const TextStyle(fontSize: 14, color: Colors.black87),
+        ),
+        const SizedBox(height: 8),
+        TextFormField(
+          initialValue: value,
+          readOnly: true,
+          decoration: InputDecoration(
+            border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+          ),
+        ),
+      ],
     );
   }
 }
