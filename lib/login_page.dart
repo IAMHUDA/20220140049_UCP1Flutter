@@ -16,7 +16,26 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
+      backgroundColor: const Color(0xFFFFF6F3),
+      body: Form(child:
+      Form(
+        key: _formKey,
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Center(
+                  child: Image.asset(
+                    'assets/Consina.png',
+                    width: 350,
+                    height: 100,
+                  ),
+                ),
+            ],
+          ),)
+          )
+          ),
     );
   }
 }
