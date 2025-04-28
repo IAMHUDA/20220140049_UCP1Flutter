@@ -44,7 +44,7 @@ class DetailPelangganPage extends StatelessWidget {
             const CircleAvatar(
               radius: 50,
               backgroundImage: AssetImage(
-                'assets/images/profile.jpg',
+                'assets/profile.jpg',
               ),
             ),
             const SizedBox(height: 16),
@@ -90,7 +90,7 @@ class DetailPelangganPage extends StatelessWidget {
                   );
                 },
 
-                child: const Text('Selesai', style: TextStyle(fontSize: 16)),
+                child: const Text('Selesai', style: TextStyle(fontSize: 16,color: Color.fromARGB(255, 255, 255, 255)),),
               ),
             ),
           ],

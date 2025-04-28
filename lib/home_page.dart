@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ucp1/piket_page.dart';
-
+import 'package:ucp1/pelanggan_page.dart';
 class HomePage extends StatefulWidget {
   final String nama;
   const HomePage({Key? key, required this.nama}) : super(key: key);
@@ -83,7 +83,10 @@ class _HomePageState extends State<HomePage> {
                   title: 'Data Pelanggan',
                   backgroundColor: Color(0xFFFE5A28),
                   onTap: () {
-                    
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => PelangganPage()),
+                    );
                   },
                   
                 ),
