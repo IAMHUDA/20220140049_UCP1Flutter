@@ -52,6 +52,45 @@ class _RegisterPageState extends State<RegisterPage> {
                       value!.isEmpty ? "Nama lengkap tidak boleh kosong" : null,
                 ),
                 const SizedBox(height: 24),
+
+                // Email & No HP
+                Row(
+                  children: [
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text("Email"),
+                          const SizedBox(height: 8),
+                          TextFormField(
+                            controller: emailController,
+                            decoration: inputDecoration("Email", Icons.email),
+                            validator: (value) =>
+                                value!.isEmpty ? "Email tidak boleh kosong" : null,
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(width: 16),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text("No HP"),
+                          const SizedBox(height: 8),
+                          TextFormField(
+                            controller: phoneController,
+                            keyboardType: TextInputType.phone,
+                            decoration: inputDecoration("No HP", Icons.phone),
+                            validator: (value) =>
+                                value!.isEmpty ? "No HP tidak boleh kosong" : null,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 24),
               ],
             ),),
         )),
