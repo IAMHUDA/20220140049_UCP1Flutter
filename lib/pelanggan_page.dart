@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ucp1/detail_pelanggan_page.dart';
 
 class PelangganPage extends StatefulWidget {
   const PelangganPage({super.key});
