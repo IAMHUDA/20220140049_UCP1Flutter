@@ -36,6 +36,20 @@ class DetailPelangganPage extends StatelessWidget {
         ),
         centerTitle: true,
       ),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          children: [
+            const SizedBox(height: 16),
+            const CircleAvatar(
+              radius: 50,
+              backgroundImage: AssetImage(
+                'assets/images/profile_placeholder.png',
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
