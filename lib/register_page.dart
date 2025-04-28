@@ -168,6 +168,50 @@ class _RegisterPageState extends State<RegisterPage> {
                   ],
                 ),
                 const SizedBox(height: 32),
+
+
+                // Button Daftar
+                SizedBox(
+                  width: double.infinity,
+                  height: 55,
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color(0xFFFE5A28),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                    ),
+                    onPressed: () {
+                      if (_formKey.currentState!.validate()) {
+                        if (passwordController.text != confirmPasswordController.text) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: const Text(
+                                'Password tidak sama',
+                                style: TextStyle(color: Colors.white),
+                              ),
+                              backgroundColor: const Color(0xFFFE5A28),
+                              duration: const Duration(seconds: 2),
+                            ),
+                          );
+                          return;
+                        }
+                        
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => HomePage(nama: emailController.text),
+                          ),
+                        );
+                      }
+                    },
+                    child: const Text(
+                      'Daftar',
+                      style: TextStyle(color: Colors.white, fontSize: 16),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 16),
               ],
             ),),
         )),
