@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:ucp1/home_page.dart';
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
 
@@ -212,6 +212,30 @@ class _RegisterPageState extends State<RegisterPage> {
                   ),
                 ),
                 const SizedBox(height: 16),
+
+
+                // Login
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text("Sudah memiliki akun? Silahkan "),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (_) => const LoginPage()),
+                        );
+                      },
+                      child: const Text(
+                        "Login disini!",
+                        style: TextStyle(
+                          color: Colors.red,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ],
             ),),
         )),
