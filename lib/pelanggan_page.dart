@@ -188,6 +188,37 @@ class _PelangganPageState extends State<PelangganPage> {
                   ),
                 ],
               ),
+              const SizedBox(height: 32),
+              SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color(0xFFFE5A28),
+                    padding: const EdgeInsets.symmetric(vertical: 16),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                  ),
+                  onPressed: () {
+                    if (_formKey.currentState?.validate() ?? false) {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => DetailPelangganPage(
+                            nama: _namaController.text,
+                            email: _emailController.text,
+                            noHp: _noHpController.text,
+                            alamat: _alamatController.text,
+                            provinsi: _provinsiController.text,
+                            kodePos: _kodePosController.text,
+                          ),
+                        ),
+                      );
+                    }
+                  },
+                  child: const Text('Simpan', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),),
+                ),
+              ),
             ],
           )
         ),
