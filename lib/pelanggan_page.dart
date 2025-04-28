@@ -117,7 +117,26 @@ class _PelangganPageState extends State<PelangganPage> {
                     ),
                   ),
                 ],
-              )
+              ),
+              const SizedBox(height: 16),
+              _buildLabel("Alamat"),
+              TextFormField(
+                controller: _alamatController,
+                decoration: InputDecoration(
+                  hintText: "Alamat",
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                ),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return "Alamat tidak boleh kosong";
+                  }
+                  return null;
+                },
+              ),
+              const SizedBox(height: 16),
+
             ],
           )
         ),
