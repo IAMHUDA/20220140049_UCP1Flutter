@@ -36,6 +36,25 @@ class _HomePageState extends State<HomePage> {
             ),
           ],
         ),
+        actions: [IconButton(onPressed: () {}, icon: Icon(Icons.logout))],
+      ),
+      body: SingleChildScrollView(
+        padding: EdgeInsets.all(16),
+        child: Column(
+          children: [
+            ClipRRect(
+              borderRadius: BorderRadius.circular(12),
+              child: Center(
+                child: Image.asset(
+                  'assets/banner.png',
+                  width: 550,
+                  height: 250,
+                  fit: BoxFit.cover,
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
