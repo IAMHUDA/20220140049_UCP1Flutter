@@ -187,6 +187,51 @@ class _PiketPageState extends State<PiketPage> {
                   ),
                 ],
               ),
+              const SizedBox(height: 24),
+
+              Align(
+                alignment: Alignment.center,
+                child: Text(
+                  "Daftar Tugas Piket",
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                ),
+              ),
+              const SizedBox(height: 8),
+
+              Expanded(
+                child:
+                    _daftarTugas.isEmpty
+                        ? const Center(
+                          child: Text(
+                            'Belum ada data',
+                            style: TextStyle(fontSize: 16, color: Colors.grey),
+                          ),
+                        )
+                        : ListView.builder(
+                          itemCount: _daftarTugas.length,
+                          itemBuilder: (context, index) {
+                            return Card(
+                              color: const Color(0xFFFE5A28),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              child: ListTile(
+                                title: Text(
+                                  _daftarTugas[index]['tugas'],
+                                  style: const TextStyle(color: Colors.white),
+                                ),
+                                trailing: const Icon(
+                                  Icons.arrow_forward_ios,
+                                  color: Colors.white,
+                                ),
+                                onTap: () {
+                                  
+                                },
+                              ),
+                            );
+                          },
+                        ),
+              ),
           ],
         )
       ),),
