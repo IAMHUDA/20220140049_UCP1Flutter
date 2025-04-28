@@ -80,6 +80,23 @@ class _PiketPageState extends State<PiketPage> {
           },
         ),
       ),
+      body: Padding(padding: 
+      const EdgeInsets.all(16.0),
+      child: Form(
+        key: _formKey,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  "Nama Anggota",
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+              ),
+          ],
+        )
+      ),),
     );
   }
 }
