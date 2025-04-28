@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ucp1/piket_page.dart';
 
 class HomePage extends StatefulWidget {
   final String nama;
@@ -69,7 +70,10 @@ class _HomePageState extends State<HomePage> {
                   title: 'Data Piket',
                   backgroundColor: Color(0xFFFE5A28),
                   onTap: () {
-                    
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => PiketPage()),
+                    );
                   },
                 ),
                 menuCard(
