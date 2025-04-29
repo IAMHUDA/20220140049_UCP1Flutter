@@ -133,6 +133,36 @@ class _DataBarangPageState extends State<DataBarangPage> {
                   return null;
                 },
               ),
+              const SizedBox(height: 16),
+              const Text('Jenis Barang'),
+              const SizedBox(height: 8),
+              DropdownButtonFormField<String>(
+                value: _selectedJenisBarang,
+                decoration: InputDecoration(
+                  hintText: 'Pilih jenis barang',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                ),
+                items: _hargaBarang.keys
+                    .map((e) => DropdownMenuItem(
+                          value: e,
+                          child: Text(e),
+                        ))
+                    .toList(),
+                onChanged: (value) {
+                  setState(() {
+                    _selectedJenisBarang = value;
+                    _hargaController.text = _hargaBarang[value!]?.toString() ?? '';
+                  });
+                },
+                validator: (value) {
+                  if (value == null) {
+                    return 'Jenis barang tidak boleh kosong';
+                  }
+                  return null;
+                },
+              ),
             ],
           )
         ),
