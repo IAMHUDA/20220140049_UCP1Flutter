@@ -163,6 +163,63 @@ class _DataBarangPageState extends State<DataBarangPage> {
                   return null;
                 },
               ),
+              const SizedBox(height: 16),
+              Row(
+                children: [
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text('Jumlah Barang'),
+                        const SizedBox(height: 8),
+                        TextFormField(
+                          controller: _jumlahController,
+                          keyboardType: TextInputType.number,
+                          decoration: InputDecoration(
+                            hintText: 'Jumlah Barang',
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                          ),
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Jumlah barang tidak boleh kosong';
+                            }
+                            return null;
+                          },
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(width: 16),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text('Harga Satuan'),
+                        const SizedBox(height: 8),
+                        TextFormField(
+                          controller: _hargaController,
+                          readOnly: true,
+                          decoration: InputDecoration(
+                            prefixText: 'Rp. ',
+                            hintText: 'Harga Satuan',
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                          ),
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Harga satuan tidak boleh kosong';
+                            }
+                            return null;
+                          },
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             ],
           )
         ),
