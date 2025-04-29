@@ -77,6 +77,37 @@ class _DataBarangPageState extends State<DataBarangPage> {
         centerTitle: true,
         backgroundColor: const Color(0xFFFE5A28),
       ),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(16),
+        child: Form(
+          key: _formKey,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text('Tanggal Transaksi'),
+              const SizedBox(height: 8),
+              TextFormField(
+                controller: _tanggalController,
+                readOnly: true,
+                onTap: _selectDate,
+                decoration: InputDecoration(
+                  hintText: 'Tanggal Transaksi',
+                  prefixIcon: const Icon(Icons.calendar_today),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                ),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Tanggal tidak boleh kosong';
+                  }
+                  return null;
+                },
+              ),
+            ],
+          )
+        ),
+      ),
     );
   }
 }
