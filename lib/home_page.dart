@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ucp1/piket_page.dart';
 import 'package:ucp1/pelanggan_page.dart';
+import 'package:ucp1/data_barang_page.dart';
 class HomePage extends StatefulWidget {
   final String nama;
   const HomePage({Key? key, required this.nama}) : super(key: key);
@@ -85,7 +86,7 @@ class _HomePageState extends State<HomePage> {
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => PelangganPage()),
+                      MaterialPageRoute(builder: (context) => DataBarangPage()),
                     );
                   },
                   
@@ -100,7 +101,10 @@ class _HomePageState extends State<HomePage> {
               height: 200,
               fullWidth: true,
               onTap: () {
-                
+                Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => PelangganPage()),
+                    );
               },
             ),
           ],

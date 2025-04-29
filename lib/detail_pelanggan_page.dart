@@ -43,9 +43,7 @@ class DetailPelangganPage extends StatelessWidget {
             const SizedBox(height: 16),
             const CircleAvatar(
               radius: 50,
-              backgroundImage: AssetImage(
-                'assets/profile.jpg',
-              ),
+              backgroundImage: AssetImage('assets/profile.jpg'),
             ),
             const SizedBox(height: 16),
             Text(
@@ -83,14 +81,20 @@ class DetailPelangganPage extends StatelessWidget {
                   ),
                 ),
                 onPressed: () {
-                  Navigator.pushNamedAndRemoveUntil(
+                  Navigator.pushNamed(
                     context,
                     '/home',
-                    (route) => false,
+                    arguments: {'nama': nama}, // Kirim kembali nama
                   );
                 },
 
-                child: const Text('Selesai', style: TextStyle(fontSize: 16,color: Color.fromARGB(255, 255, 255, 255)),),
+                child: const Text(
+                  'Selesai',
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: Color.fromARGB(255, 255, 255, 255),
+                  ),
+                ),
               ),
             ),
           ],
@@ -98,6 +102,7 @@ class DetailPelangganPage extends StatelessWidget {
       ),
     );
   }
+
   Widget _buildDetailSection(String label, String value) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,

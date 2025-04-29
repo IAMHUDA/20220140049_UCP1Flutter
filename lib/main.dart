@@ -19,11 +19,14 @@ class MyApp extends StatelessWidget {
       initialRoute: '/login',
       routes: {
         '/login': (context) => const LoginPage(),
-        '/home': (context) => const HomePage(nama: ""),
-
+        '/home': (context) {
+          final args =
+              ModalRoute.of(context)?.settings.arguments
+                  as Map<String, dynamic>?;
+          return HomePage(nama: args?['nama'] ?? 'Guest');
+        },
       },
       debugShowCheckedModeBanner: false,
     );
   }
 }
-
