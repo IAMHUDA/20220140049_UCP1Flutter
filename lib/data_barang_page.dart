@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:ucp1/detail_data_barang_page.dart';
 
 class DataBarangPage extends StatefulWidget {
   const DataBarangPage({super.key});
@@ -9,7 +10,6 @@ class DataBarangPage extends StatefulWidget {
 }
 
 class _DataBarangPageState extends State<DataBarangPage> {
-
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _tanggalController = TextEditingController();
   final TextEditingController _jumlahController = TextEditingController();
@@ -51,7 +51,10 @@ class _DataBarangPageState extends State<DataBarangPage> {
         String englishDay = englishFormat.split('/')[0];
         String indonesianDay = _indonesianDays[englishDay] ?? englishDay;
         // Gabungkan kembali dengan format yang sama
-        _tanggalController.text = englishFormat.replaceFirst(englishDay, indonesianDay);
+        _tanggalController.text = englishFormat.replaceFirst(
+          englishDay,
+          indonesianDay,
+        );
       });
     }
   }
@@ -63,6 +66,7 @@ class _DataBarangPageState extends State<DataBarangPage> {
     _hargaController.dispose();
     super.dispose();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -73,7 +77,10 @@ class _DataBarangPageState extends State<DataBarangPage> {
             Navigator.pop(context);
           },
         ),
-        title: const Text('Pendataan Barang',style: TextStyle(color: Color.fromARGB(255, 255, 255, 255)),),
+        title: const Text(
+          'Pendataan Barang',
+          style: TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
+        ),
         centerTitle: true,
         backgroundColor: const Color(0xFFFE5A28),
       ),
@@ -115,12 +122,10 @@ class _DataBarangPageState extends State<DataBarangPage> {
                     borderRadius: BorderRadius.circular(12),
                   ),
                 ),
-                items: ['Barang Masuk', 'Barang Keluar']
-                    .map((e) => DropdownMenuItem(
-                          value: e,
-                          child: Text(e),
-                        ))
-                    .toList(),
+                items:
+                    ['Barang Masuk', 'Barang Keluar']
+                        .map((e) => DropdownMenuItem(value: e, child: Text(e)))
+                        .toList(),
                 onChanged: (value) {
                   setState(() {
                     _selectedJenisTransaksi = value;
@@ -144,16 +149,15 @@ class _DataBarangPageState extends State<DataBarangPage> {
                     borderRadius: BorderRadius.circular(12),
                   ),
                 ),
-                items: _hargaBarang.keys
-                    .map((e) => DropdownMenuItem(
-                          value: e,
-                          child: Text(e),
-                        ))
-                    .toList(),
+                items:
+                    _hargaBarang.keys
+                        .map((e) => DropdownMenuItem(value: e, child: Text(e)))
+                        .toList(),
                 onChanged: (value) {
                   setState(() {
                     _selectedJenisBarang = value;
-                    _hargaController.text = _hargaBarang[value!]?.toString() ?? '';
+                    _hargaController.text =
+                        _hargaBarang[value!]?.toString() ?? '';
                   });
                 },
                 validator: (value) {
@@ -220,8 +224,46 @@ class _DataBarangPageState extends State<DataBarangPage> {
                   ),
                 ],
               ),
+              const SizedBox(height: 32),
+              SizedBox(
+                width: double.infinity,
+                height: 50,
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.red,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                  ),
+                  onPressed: () {
+                    if (_formKey.currentState!.validate()) {
+                      // Hitung total harga
+                      int jumlah = int.tryParse(_jumlahController.text) ?? 0;
+                      int hargaSatuan =
+                          int.tryParse(_hargaController.text) ?? 0;
+                      int totalHarga = jumlah * hargaSatuan;
+
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder:
+                              (context) => DetailDataBarangPage(
+                                tanggal: _tanggalController.text,
+                                jenisTransaksi: _selectedJenisTransaksi ?? '',
+                                jenisBarang: _selectedJenisBarang ?? '',
+                                jumlah: jumlah,
+                                hargaSatuan: hargaSatuan,
+                                totalHarga: totalHarga,
+                              ),
+                        ),
+                      );
+                    }
+                  },
+                  child: const Text('Submit'),
+                ),
+              ),
             ],
-          )
+          ),
         ),
       ),
     );
