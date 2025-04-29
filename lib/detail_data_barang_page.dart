@@ -96,5 +96,42 @@ class DetailDataBarangPage extends StatelessWidget {
         ],
       ),)),
     );
+    
+  }
+  Widget _buildTableRow(String label, String value, bool isLast) {
+    return Container(
+      decoration: BoxDecoration(
+        border: isLast ? null : Border(bottom: BorderSide(color: Colors.grey.shade300, width: 1)),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 1),
+        child: Row(
+          children: [
+            Expanded(
+              flex: 4,
+              child: Text(
+                label,
+                style: TextStyle(
+                  fontSize: 17,
+                  color: Colors.grey.shade800,
+                  fontWeight: FontWeight.bold
+                ),
+              ),
+            ),
+            Expanded(
+              flex: 5,
+              child: Text(
+                value,
+                textAlign: TextAlign.right,
+                style: const TextStyle(
+                  fontSize: 17,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }
